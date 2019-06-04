@@ -35,7 +35,7 @@
 <meta property="og:description" content="read_idats" />
 <meta name="twitter:card" content="summary" />
 
-
+<meta name="robots" content="noindex">
 
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CARoT</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.7.9000</span>
       </span>
     </div>
 
@@ -111,9 +111,11 @@
     <pre class="usage"><span class='fu'>read_idats</span>(<span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a></span>(), <span class='kw'>csv_file</span> <span class='kw'>=</span> <span class='st'>"csv$"</span>,
   <span class='kw'>meth_value_type</span> <span class='kw'>=</span> <span class='st'>"B"</span>, <span class='kw'>filter_beads</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>bead_cutoff</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
   <span class='kw'>filter_non_cpg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>filter_snps</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>population</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>filter_multihit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>filter_xy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>array_name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"EPIC"</span>,
-  <span class='st'>"450k"</span>), <span class='kw'>annotation_version</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"ilm10b4.hg19"</span>, <span class='st'>"ilmn12.hg19"</span>),
-  <span class='kw'>n_cores</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+  <span class='kw'>filter_multihit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>filter_xy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>detection_pvalues</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
+  <span class='kw'>filter_callrate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>callrate_samples</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
+  <span class='kw'>callrate_probes</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>norm_background</span> <span class='kw'>=</span> <span class='st'>"oob"</span>, <span class='kw'>norm_dye</span> <span class='kw'>=</span> <span class='st'>"RELIC"</span>,
+  <span class='kw'>norm_quantile</span> <span class='kw'>=</span> <span class='st'>"quantile1"</span>, <span class='kw'>array_name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"EPIC"</span>, <span class='st'>"450k"</span>),
+  <span class='kw'>annotation_version</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"ilm10b4.hg19"</span>, <span class='st'>"ilmn12.hg19"</span>), <span class='kw'>n_cores</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,6 +168,34 @@ locations with bwa be removed? Default is <code>TRUE</code>.</p></td>
       <td><p>A <code>logical</code>. Should probes from X and Y chromosomes be removed? Default is <code>TRUE</code>.</p></td>
     </tr>
     <tr>
+      <th>detection_pvalues</th>
+      <td><p>A <code>numeric</code>.</p></td>
+    </tr>
+    <tr>
+      <th>filter_callrate</th>
+      <td><p>A <code>logical</code>.,</p></td>
+    </tr>
+    <tr>
+      <th>callrate_samples</th>
+      <td><p>A <code>numeric</code>.</p></td>
+    </tr>
+    <tr>
+      <th>callrate_probes</th>
+      <td><p>A <code>numeric</code>.</p></td>
+    </tr>
+    <tr>
+      <th>norm_background</th>
+      <td><p>A <code>character</code>.</p></td>
+    </tr>
+    <tr>
+      <th>norm_dye</th>
+      <td><p>A <code>character</code>.</p></td>
+    </tr>
+    <tr>
+      <th>norm_quantile</th>
+      <td><p>A <code>character</code>.</p></td>
+    </tr>
+    <tr>
       <th>array_name</th>
       <td><p>A <code>character</code>. Choose microarray type, eiyther <code>"450K"</code> or <code>"EPIC"</code>.
 Default is <code>"EPIC"</code>.</p></td>
@@ -177,7 +207,7 @@ Default is <code>"ilm10b4.hg19"</code> for the <code>"EPIC"</code> array</p></td
     </tr>
     <tr>
       <th>n_cores</th>
-      <td><p>A <code>integer</code>. The number of cores to use,
+      <td><p>An <code>integer</code>. The number of cores to use,
 i.e., at most how many child processes will be run simultaneously.</p></td>
     </tr>
     </table>
