@@ -1,6 +1,0 @@
-template:
-  params:
-    bootswatch: simplex
-
-development:
-  mode: auto
