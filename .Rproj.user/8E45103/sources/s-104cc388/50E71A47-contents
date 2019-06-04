@@ -1,0 +1,111 @@
+options(stringsAsFactors = FALSE)
+
+script_name <- "02-idats_qc"
+project_directory <- "/disks/PROJECT/PreciNASH"
+working_directory <- gsub("/PROJECT/", "/DATATMP/", project_directory)
+output_directory <- paste(working_directory, script_name, sep = "/")
+
+dir.create(output_directory, recursive = TRUE, showWarnings = FALSE, mode = '0777')
+
+
+### Load packages
+library(parallel)
+library(tidyverse)
+library(scales)
+library(grid)
+
+
+### GIT parameters
+current_date <- format(Sys.Date(), format = "%Y%m%d")
+user <- "Mickaël Canouil"
+email <- "mickael.canouil@cnrs.fr"
+git <- paste0('git -c "user.name=', user, '" -c "user.email=', email, '" -C ', project_directory)
+commit <- paste0('-m "EPIC-QC done ', current_date, '"')
+fexsend <- "/disks/DATA/Softwares/FEX/fexsend"
+
+file_name <- "PreciNASH-EPIC_QC"
+archive_name <- paste(output_directory, paste0(current_date, "_", file_name, ".tar.gz"), sep = "/")
+phenotype_xlsx <- paste0(project_directory, "/Data/01-design/PreciNASH_design.xlsx")
+data_directory <- "/disks/DATA/ExternalData/PreciNASH/EPIC"
+csv_file_ori <-  paste0(data_directory, "/SampleSheetMethylepic.csv")
+csv_file_clean <- paste0(data_directory, "/sample_sheet_clean.csv")
+idats_directory <- paste0(data_directory, "/idats")
+
+
+### Sample sheet QC
+standard_names <- list(
+  Sample_Name = "Sample_Name",
+  Sample_Plate = "AMP_Plate",
+  Sample_Well = "Sample_Well",
+  Sentrix_ID = "SentrixBarcode_A",
+  Sentrix_Position = "SentrixPosition_A"
+)
+
+sample_sheet <- readr::read_csv(csv_file_ori, skip = 8) %>% 
+  dplyr::select(!!!standard_names) %>% 
+  tidyr::unite(col = "Sample_ID", Sentrix_ID, Sentrix_Position, sep = "_", remove = FALSE)
+
+
+phenotype <- readxl::read_excel(phenotype_xlsx) %>% 
+  dplyr::mutate(
+    Sample_Name = ifelse(
+      test = is_duplicated, 
+      yes = paste0(sprintf("ABOS%04d", ABOS_ID), "_2"), 
+      no = sprintf("ABOS%04d", ABOS_ID)
+    )
+  )
+sample_sheet <- dplyr::inner_join(x = sample_sheet, y = phenotype, by = "Sample_Name")
+
+
+readr::write_csv(x = sample_sheet, path = csv_file_clean)
+
+
+### QC
+file.copy(
+  from = "/disks/PROJECT/Rpackages/CARoT/R/qc_idats.Rmd", 
+  to = paste0(output_directory, "/qc_idats.Rmd"),
+  overwrite = TRUE
+)
+rmarkdown::render(
+  input = paste0(output_directory, "/qc_idats.Rmd"),  
+  output_file = paste0(file_name, ".html"), 
+  output_dir = output_directory,
+  encoding = 'UTF-8',
+  params = list(
+    title = "[PreciNASH] EPIC Array Quality-Control",
+    author_name = paste0(user, ", Ph.D."),
+    author_affiliation = "Université de Lille, CNRS, Institut Pasteur de Lille, UMR 8199 - EGID, F-59000, Lille, France.",
+    author_email = email,
+    output_directory = output_directory,
+    show_code = FALSE,
+    n_cores = 20,
+    dpi = 300,
+    gg_fontsize = 12,
+    csv_file = csv_file_clean,
+    data_directory = idats_directory,
+    array = "EPIC",
+    annotation = "ilm10b4.hg19",
+    filter_snps = TRUE,
+    filter_non_cpg = TRUE,
+    filter_xy = TRUE,
+    filter_multihit = TRUE,
+    filter_beads = TRUE,
+    population = NULL,
+    bead_cutoff = 0.05,
+    threshold_detection_pvalues = 0.01,
+    threshold_call_rate_samples = 0.99,
+    threshold_call_rate_cpgs = 1,
+    threshold_gender = -2, 
+    colname_gender = "sexe",
+    norm_background = "oob",
+    norm_dye = "RELIC",
+    norm_quantile = "quantile1",
+    cell_tissue = "liver",
+    pca_vars = c("Sample_Plate", "Sentrix_ID", "group", "M0_age", "M0_BMI")
+  )
+)
+
+system(paste("tar zcvf", archive_name, "-C", output_directory, paste0(file_name, ".html")), intern = TRUE)
+fex_out <- system(paste(fexsend, archive_name, email), intern = TRUE)
+system(paste(git, "commit", paste0("Scripts/", script_name, ".R"), commit), intern = TRUE)
+system(paste(git, "tag", paste(current_date, file_name, sep = "-"), commit), intern = TRUE)

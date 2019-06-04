@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1558696185997.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "213309483",
+    "id" : "DFAB92D4",
+    "lastKnownWriteTime" : 1559649345,
+    "last_content_update" : 1559649345316,
+    "path" : "~/disks/PROJECT/Rpackages/CARoT/appveyor.yml",
+    "project_path" : "appveyor.yml",
+    "properties" : {
+        "cursorPosition" : "31,95",
+        "scrollLine" : "14"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "yaml"
+}

@@ -1,0 +1,262 @@
+FROM library/debian
+
+
+ENV R_VERSION=3.6.0
+ENV BIOCONDUCTOR_VERSION=3.9
+
+
+### Install linux libraries
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends locales \
+  && sed -i '/^#.* en_US.* /s/^#//' /etc/locale.gen \
+  && sed -i '/^#.* en_GB.* /s/^#//' /etc/locale.gen \
+  && locale-gen \
+  && export LANG="en_US.UTF-8" \
+  && export LANGUAGE="en_US.UTF-8" \
+  && export LC_CTYPE="en_US.UTF-8" \
+  && export LC_NUMERIC="en_US.UTF-8" \
+  && export LC_TIME="en_US.UTF-8" \
+  && export LC_COLLATE="en_US.UTF-8" \
+  && export LC_MONETARY="en_US.UTF-8" \
+  && export LC_MESSAGES="en_US.UTF-8" \
+  && export LC_PAPER="en_US.UTF-8" \
+  && export LC_NAME="en_US.UTF-8" \
+  && export LC_ADDRESS="en_US.UTF-8" \
+  && export LC_TELEPHONE="en_US.UTF-8" \
+  && export LC_MEASUREMENT="en_US.UTF-8" \
+  && export LC_IDENTIFICATION="en_US.UTF-8" \
+  && export LC_ALL="en_US.UTF-8" \
+  # && /usr/sbin/update-locale LANG=en_US.UTF-8 \
+  && apt-get install -y --no-install-recommends nano man-db htop
+
+ENV LC_ALL=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    bash-completion \
+    ca-certificates \
+    file \
+    fonts-texgyre \
+    g++ \
+    gfortran \
+    gsfonts \
+    libblas-dev \
+    libbz2-1.0 \
+    libcurl3 \
+    libicu57 \
+    libjpeg62-turbo \
+    libopenblas-dev \
+    libpangocairo-1.0-0 \
+    libpcre3 \
+    libpng16-16 \
+    libreadline7 \
+    libtiff5 \
+    liblzma5 \
+    make \
+    unzip \
+    zip \
+    zlib1g \
+  ## R additional
+  && BUILDDEPS="curl \
+    default-jdk \
+    libbz2-dev \
+    libcairo2-dev \
+    libcurl4-openssl-dev \
+    libpango1.0-dev \
+    libjpeg-dev \
+    libicu-dev \
+    libpcre3-dev \
+    libpng-dev \
+    libreadline-dev \
+    libtiff5-dev \
+    liblzma-dev \
+    libx11-dev \
+    libxt-dev \
+    perl \
+    tcl8.6-dev \
+    tk8.6-dev \
+    texinfo \
+    x11proto-core-dev \
+    xauth \
+    xfonts-base \
+    xvfb \
+    zlib1g-dev \
+    texlive-base \
+    texlive-lang-french \
+    texlive-lang-english \
+    texlive-latex-base \
+    texlive-latex-recommended \
+    texlive-latex-extra \
+    texlive-font-utils \
+    texlive-fonts-recommended \
+    texlive-fonts-extra \
+    texlive-generic-recommended \
+    texlive-generic-extra \
+    texlive-plain-extra \
+    texlive-binaries \
+    texlive-luatex \
+    texlive-metapost \
+    texlive-omega \
+    texlive-htmlxml \
+    texlive-pictures \
+    texlive-xetex \
+    texlive-extra-utils \
+    texlive-games \
+    texlive-humanities \
+    texlive-music \
+    texlive-pstricks \
+    texlive-publishers \
+    texlive-science \
+    texlive-bibtex-extra \
+    texlive-formats-extra \
+    lmodern" \
+  && apt-get install -y --no-install-recommends $BUILDDEPS \
+  ## Rstudio
+  && apt-get install -y --no-install-recommends \
+    git \
+    libapparmor1 \
+    curl \
+    tar \
+    libcurl4-openssl-dev \
+    libedit2 \
+    libssl-dev \
+    lsb-release \
+    psmisc \
+    procps \
+    python-setuptools \
+    sudo \
+    wget \
+    perl \
+  ## R packages
+  && apt-get install -y --no-install-recommends \
+    libio-socket-ssl-perl \
+    multiarch-support \
+    librsvg2-dev \
+    libgsl-dev \
+    build-essential \
+    openssh-client \
+    libudunits2-dev \
+    libxml2-dev \
+    libgdal-dev \
+    cargo \
+    ffmpeg \
+    libavfilter-dev \
+    libmagick++-dev \
+    pandoc \
+    pandoc-citeproc \
+    qpdf \
+  ## databases
+  && apt-get install -y --install-suggests \
+    tdsodbc \
+    odbc-postgresql \
+    libsqliteodbc \
+    unixodbc \
+    unixodbc-dev \
+  && cd /tmp \
+  && wget https://dev.mysql.com/get/Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.13-linux-debian9-x86-64bit.tar.gz \
+  && tar -xvf mysql-connector-odbc-8.0.13-linux-debian9-x86-64bit.tar.gz \
+  && cd mysql-connector-odbc-8.0.13-linux-debian9-x86-64bit \
+  && cp bin/* /usr/local/bin \
+  && cp lib/* /usr/local/lib \
+  && myodbc-installer -a -d -n "MySQL ODBC 8.0 Driver" -t "Driver=/usr/local/lib/libmyodbc8w.so" \
+  && cd /tmp \
+  && rm -Rf mysql-connector-odbc-8.0.13-linux-debian9-x86-64bit* \
+  ## perl
+  && cpan -f install MIME::Lite
+
+  ## genetics software
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends autoconf automake \
+  && apt-get install -y --no-install-recommends \
+    fastqtl \
+    vcftools \
+    plink1.9 \
+  && cd /tmp \
+  && git clone git://github.com/samtools/htslib.git \
+  && cd /tmp/htslib \
+  && autoheader \
+  && autoconf \
+  && ./configure --prefix=/usr \
+  && make \
+  && make install \
+  && cd /tmp \
+  && git clone git://github.com/samtools/bcftools.git \
+  && cd /tmp/bcftools \
+  && autoheader \
+  && autoconf \
+  && ./configure --prefix=/usr \
+  && make \
+  && make install \
+  && cd /tmp \
+  && rm -rf htslib bcftools \
+  && cd /tmp \
+  && wget https://cnsgenomics.com/software/gcta/gcta_1.92.1beta6.zip \
+  && unzip gcta_1.92.1beta6.zip \
+  && cp gcta_1.92.1beta6/gcta64 /usr/bin/ \
+  && rm -rf gcta_* \
+  ## git config
+  && git config --system core.sharedRepository 0775 \
+  && git config --system credential.helper "cache --timeout=3600" \
+  && git config --system core.editor "nano -w" \
+  && git config --system color.ui auto \
+  && cd /tmp \
+  ## Download source code
+  && curl -O https://cran.r-project.org/src/base/R-3/R-${R_VERSION}.tar.gz \
+  ## Extract source code
+  && tar -zxvf R-${R_VERSION}.tar.gz \
+  && cd R-${R_VERSION} \
+  ## Set compiler flags
+  && R_PAPERSIZE=a4 \
+    R_BATCHSAVE="--no-save --no-restore" \
+    R_BROWSER=xdg-open \
+    PAGER=/usr/bin/pager \
+    PERL=/usr/bin/perl \
+    R_UNZIPCMD=/usr/bin/unzip \
+    R_ZIPCMD=/usr/bin/zip \
+    R_PRINTCMD=/usr/bin/lpr \
+    LIBnn=lib \
+    AWK=/usr/bin/awk \
+    CFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
+    CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
+  ## Configure options
+  ./configure --enable-R-shlib \
+              --enable-memory-profiling \
+              --with-readline \
+              --with-blas \
+              --with-tcltk \
+              --disable-nls \
+              --with-recommended-packages \
+  ## Build and install
+  && make \
+  && make install \
+  ## Add a default CRAN mirror
+  && echo "options(repos = c(CRAN = 'https://cran.rstudio.com/'), download.file.method = 'libcurl')" >> /usr/local/lib/R/etc/Rprofile.site \
+  ## Add a library directory (for user-installed packages)
+  && mkdir -p /usr/local/lib/R/site-library \
+  && chown root:staff /usr/local/lib/R/site-library \
+  && chmod g+wx /usr/local/lib/R/site-library \
+  ## Fix library path
+  && echo "R_LIBS_USER='/usr/local/lib/R/site-library'" >> /usr/local/lib/R/etc/Renviron \
+  && echo "R_LIBS=\${R_LIBS-'/usr/local/lib/R/site-library:/usr/local/lib/R/library:/usr/lib/R/library'}" >> /usr/local/lib/R/etc/Renviron
+  
+## install packages from date-locked MRAN snapshot of CRAN
+  # RUN [ -z "$BUILD_DATE" ] && BUILD_DATE=$(TZ="America/Los_Angeles" date -I) || true \
+  # && MRAN=https://mran.microsoft.com/snapshot/${BUILD_DATE} \
+  # && echo MRAN=$MRAN >> /etc/environment \
+  # && export MRAN=$MRAN \
+  # && echo "options(repos = c(CRAN='$MRAN'), download.file.method = 'libcurl')" >> /usr/local/lib/R/etc/Rprofile.site \
+  ## Use littler installation scripts
+  # && Rscript -e "install.packages(c('littler', 'docopt'), repo = '$MRAN')" \
+  # && ln -s /usr/local/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \
+  # && ln -s /usr/local/lib/R/site-library/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
+  # && ln -s /usr/local/lib/R/site-library/littler/bin/r /usr/local/bin/r
+  
+
+## Install R packages
+COPY packages.R /tmp/packages.R
+RUN Rscript /tmp/packages.R 
+
+
+CMD ["/tail -f /dev/null"]

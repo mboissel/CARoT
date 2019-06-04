@@ -1,0 +1,10 @@
+docker exec R360 Rscript -e 'remotes::install_github("mcanouil/CARoT", upgrade = "never")'
+docker exec R353 Rscript -e 'remotes::install_github("mcanouil/CARoT", upgrade = "never")'
+
+
+system("git checkout master")
+pkgdown::build_site(override = list(destination = tempdir()))
+system("git checkout gh-pages")
+file.copy(from = paste0(tempdir(), "/dev"), to = ".", recursive = TRUE, overwrite = TRUE)
+system('git add --all; git -c "user.name=Mickaël Canouil" -c "user.email=mickael.canouil@cnrs.fr" commit -m "site update"')
+unlink(paste(tempdir(), "/dev"), recursive = TRUE)
