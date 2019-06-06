@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CARoT</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.7.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -98,14 +98,22 @@
       
     </div>
 
-    <div id="carot-0-1-8-development-version" class="section level1">
+    <div id="carot-0-2-0-development-version" class="section level1">
 <h1 class="page-header">
-<a href="#carot-0-1-8-development-version" class="anchor"></a>CARoT 0.1.8 (development version)</h1>
+<a href="#carot-0-2-0-development-version" class="anchor"></a>CARoT 0.2.0 (development version)</h1>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features</h2>
+<ul>
+<li>New <code>qc_plink()</code>, it allows to compute quality-control of genotyping array (PLINK format) using a default rmarkdown template (<code>/inst/rmarkdown/qc_plink.Rmd</code>).</li>
+</ul>
+</div>
 <div id="minor-improvements-and-fixes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-improvements-and-fixes" class="anchor"></a>Minor improvements and fixes</h2>
 <ul>
 <li>In <code>DESCRIPTION</code>, add <em>RSpectra (&lt;= 0.13-1)</em> for <em>flashpcaR</em> to <code>Imports</code>.</li>
+<li>In <code>DESCRIPTION</code>, add <em>data.table</em> and <em>qdap</em> to <code>Imports</code>.</li>
 </ul>
 </div>
 </div>
@@ -129,11 +137,11 @@
 <h2 class="hasAnchor">
 <a href="#minor-improvements-and-fixes-2" class="anchor"></a>Minor improvements and fixes</h2>
 <ul>
-<li>In <code>R/estimate_ethnicity.R</code>, add roxygen2 documentation for <code><a href="../reference/estimate_ethnicity.html">estimate_ethnicity()</a></code>.</li>
-<li>In <code>R/ggheatmap.R</code>, add roxygen2 documentation for <code><a href="../reference/ggheatmap.html">ggheatmap()</a></code>.</li>
-<li>In <code>R/pca_report.R</code>, add roxygen2 documentation for <code><a href="../reference/pca_report.html">pca_report()</a></code>.</li>
-<li>In <code>R/qc_idats.R</code>, add roxygen2 documentation for <code><a href="../reference/qc_idats.html">qc_idats()</a></code>.</li>
-<li>In <code>/man</code>, add roxygen2 documentation for <code><a href="../reference/estimate_ethnicity.html">estimate_ethnicity()</a></code>, <code><a href="../reference/ggheatmap.html">ggheatmap()</a></code>, <code><a href="../reference/pca_report.html">pca_report()</a></code> and <code><a href="../reference/qc_idats.html">qc_idats()</a></code>.</li>
+<li>In <code>R/estimate_ethnicity.R</code>, add roxygen2 documentation for <code>estimate_ethnicity()</code>.</li>
+<li>In <code>R/ggheatmap.R</code>, add roxygen2 documentation for <code>ggheatmap()</code>.</li>
+<li>In <code>R/pca_report.R</code>, add roxygen2 documentation for <code>pca_report()</code>.</li>
+<li>In <code>R/qc_idats.R</code>, add roxygen2 documentation for <code>qc_idats()</code>.</li>
+<li>In <code>/man</code>, add roxygen2 documentation for <code>estimate_ethnicity()</code>, <code>ggheatmap()</code>, <code>pca_report()</code> and <code>qc_idats()</code>.</li>
 </ul>
 </div>
 </div>
@@ -178,9 +186,9 @@
 <h2 class="hasAnchor">
 <a href="#minor-improvements-and-fixes-6" class="anchor"></a>Minor improvements and fixes</h2>
 <ul>
-<li>In <code>/R/estimate_ethnicity.R</code>, add <code><a href="../reference/check_input.html">check_input()</a></code> function to properly check inputs using <code>fs</code> package.</li>
+<li>In <code>/R/estimate_ethnicity.R</code>, add <code>check_input()</code> function to properly check inputs using <code>fs</code> package.</li>
 <li>In <code>/inst/rmarkdown/qc_idats.Rmd</code>, now print call rate parameters in plain text.</li>
-<li>In <code>/inst/rmarkdown/qc_idats.Rmd</code> and <code>/R/qc_idats.R</code>, <code><a href="../reference/qc_idats.html">qc_idats()</a></code> has a new <code>cache</code> parameter.</li>
+<li>In <code>/inst/rmarkdown/qc_idats.Rmd</code> and <code>/R/qc_idats.R</code>, <code>qc_idats()</code> has a new <code>cache</code> parameter.</li>
 </ul>
 </div>
 </div>
@@ -191,7 +199,7 @@
 <h2 class="hasAnchor">
 <a href="#minor-improvements-and-fixes-7" class="anchor"></a>Minor improvements and fixes</h2>
 <ul>
-<li>In <code><a href="../reference/format_sequencing.html">format_sequencing()</a></code> (<code>R/estimate_ethnicity.R</code>), fix missing arguments from <code><a href="../reference/format_vcf.html">format_vcf()</a></code>.</li>
+<li>In <code>format_sequencing()</code> (<code>R/estimate_ethnicity.R</code>), fix missing arguments from <code>format_vcf()</code>.</li>
 <li>In <code>/inst/rmarkdown/qc_idats.Rmd</code>, now applies <code>filter_xy</code> after gender check.</li>
 <li>In <code>/inst/rmarkdown/qc_idats.Rmd</code>, fix <code>Sample_ID</code> (<em>i.e.,</em> rownames) for gender check.</li>
 <li>In <code>/R/qc_idats.R</code>, remove <code><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat()</a></code> messages from <code>ENmix</code> functions.</li>
@@ -201,16 +209,16 @@
     <div id="carot-0-1-0-development-version" class="section level1">
 <h1 class="page-header">
 <a href="#carot-0-1-0-development-version" class="anchor"></a>CARoT 0.1.0 (development version)</h1>
-<div id="new-features" class="section level2">
+<div id="new-features-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features" class="anchor"></a>New features</h2>
+<a href="#new-features-1" class="anchor"></a>New features</h2>
 <ul>
-<li>New <code><a href="../reference/read_idats.html">read_idats()</a></code> allows to efficiently import idats files mostly using <code>minfi</code> functions.</li>
-<li>New <code><a href="../reference/estimate_ethnicity.html">estimate_ethnicity()</a></code> allows to compute the genomic component for ethnicity based on VCF files.</li>
-<li>New <code><a href="../reference/pca_report.html">pca_report()</a></code> allows to compute an analysis report using principal component analysis.<br>
+<li>New <code>read_idats()</code>, it allows to efficiently import idats files mostly using <code>minfi</code> functions.</li>
+<li>New <code>estimate_ethnicity()</code>, it allows to compute the genomic component for ethnicity based on VCF files.</li>
+<li>New <code>pca_report()</code>, it allows to compute an analysis report using principal component analysis.<br>
 The function can be used in Rmarkdown chunk with <code>results="asis"</code> to render the report.</li>
-<li>New <code><a href="../reference/ggheatmap.html">ggheatmap()</a></code> allows to compute heatmap with dendrogram on x-axis and y-axis.</li>
-<li>New <code><a href="../reference/qc_idats.html">qc_idats()</a></code> allows to compute quality-control of methylation array from Illumina using a default rmarkdown template (<code>/inst/rmarkdown/qc_idats.Rmd</code>).</li>
+<li>New <code>ggheatmap()</code>, it allows to compute heatmap with dendrogram on x-axis and y-axis.</li>
+<li>New <code>qc_idats()</code>, it allows to compute quality-control of methylation array from Illumina using a default rmarkdown template (<code>/inst/rmarkdown/qc_idats.Rmd</code>).</li>
 </ul>
 </div>
 </div>
@@ -220,7 +228,7 @@ The function can be used in Rmarkdown chunk with <code>results="asis"</code> to 
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#carot-0-1-8-development-version">0.1.8</a></li>
+        <li><a href="#carot-0-2-0-development-version">0.2.0</a></li>
         <li><a href="#carot-0-1-7-development-version">0.1.7</a></li>
         <li><a href="#carot-0-1-6-development-version">0.1.6</a></li>
         <li><a href="#carot-0-1-5-development-version">0.1.5</a></li>
