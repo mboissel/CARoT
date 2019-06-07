@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CARoT</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.1.9000</span>
       </span>
     </div>
 
@@ -130,7 +130,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>input_directory</th>
-      <td><p>A <code>character</code>.</p></td>
+      <td><p>A <code>character</code>. The path to the plink files.
+The path should contains the file name without the extension, i.e., without <code>*.bed</code>, <code>*.bim</code> or <code>*.fam</code>.</p></td>
     </tr>
     <tr>
       <th>output_directory</th>
@@ -138,7 +139,7 @@
     </tr>
     <tr>
       <th>cohort_name</th>
-      <td><p>A <code>character</code>.</p></td>
+      <td><p>A <code>character</code>. The name of the studied cohort / population.</p></td>
     </tr>
     <tr>
       <th>output_file</th>
@@ -146,83 +147,104 @@
     </tr>
     <tr>
       <th>array</th>
-      <td><p>A <code>character</code>. The array name.</p></td>
+      <td><p>A <code>character</code>. The array name, e.g., "Illumina Omni2.5".</p></td>
     </tr>
     <tr>
       <th>callrate_samples</th>
-      <td><p>A <code>numeric</code>.</p></td>
+      <td><p>A <code>numeric</code>. The call rate threshold for samples, under which samples are excluded.
+Default is <code>0.95</code>.</p></td>
     </tr>
     <tr>
       <th>callrate_snps</th>
-      <td><p>A <code>numeric</code>.</p></td>
+      <td><p>A <code>numeric</code>. The call rate threshold for probes, under which probes are excluded.
+Default is <code>0.95</code>.</p></td>
     </tr>
     <tr>
       <th>heterozygosity_treshold</th>
-      <td><p>A <code>numeric</code>.</p></td>
+      <td><p>A <code>numeric</code>. The heterozygosity threshold for samples
+(number of standard deviation from the mean), under/above which samples are excluded.
+Default is <code>4</code>.</p></td>
     </tr>
     <tr>
       <th>maf_threshold</th>
-      <td><p>A <code>numeric</code>.</p></td>
+      <td><p>A <code>numeric</code>. The minor allele frequency under which variants are considered "rare".
+Default is <code>0.01</code>.</p></td>
     </tr>
     <tr>
       <th>hwe_pvalue</th>
-      <td><p>A <code>numeric</code>.</p></td>
+      <td><p>A <code>numeric</code>. The p-value threshold for Hardy-Weinberg equilibrium test.
+Default is <code>0.0001</code>.</p></td>
     </tr>
     <tr>
       <th>includes_relatives</th>
-      <td><p>A <code>logical</code>.</p></td>
+      <td><p>A <code>logical</code>. Does the data contain related samples?
+Default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>mendelian_samples</th>
-      <td><p>A <code>numeric</code>.</p></td>
+      <td><p>A <code>numeric</code>. The Mendel error rate threshold above which samples are excluded.
+Default is <code>0.05</code>.</p></td>
     </tr>
     <tr>
       <th>mendelian_snp</th>
-      <td><p>A <code>numeric</code>.</p></td>
+      <td><p>A <code>numeric</code>. The Mendel error rate threshold above which variants are excluded.
+Default is <code>0.1</code>.</p></td>
     </tr>
     <tr>
       <th>IBD_threshold</th>
-      <td><p>A <code>numeric</code>.</p></td>
+      <td><p>A <code>numeric</code>. The threshold for IBD (identical by descent) above which
+samples are characterised as relatives.
+Default is <code>0.2</code>.</p></td>
     </tr>
     <tr>
       <th>population</th>
-      <td><p>A <code>character</code>.</p></td>
+      <td><p>A <code>character</code>. The ethnicity of the studied population if known, e.g., <code>"EUR"</code>.
+Default is <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>pca_components</th>
-      <td><p>A <code>numeric</code>.</p></td>
+      <td><p>A <code>numeric</code>. The number of principal components to be computed.
+Default is <code>10</code>.</p></td>
     </tr>
     <tr>
       <th>pca_threshold</th>
-      <td><p>A <code>numeric</code>.</p></td>
+      <td><p>A <code>numeric</code>. The threshold to define outliers on the principal component analysis,
+the as number of standard deviation from the cohort centroid.
+Default is <code>3</code>.</p></td>
     </tr>
     <tr>
       <th>check_bim_script</th>
-      <td><p>A <code>character</code>.</p></td>
+      <td><p>A <code>character</code>. The PERL script to use to check PLINK files to allow later imputation.
+Default is <code><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file("perl", "HRC-1000G-check-bim.pl", package = "CARoT")</a></code>.</p></td>
     </tr>
     <tr>
       <th>ref1kg_panel</th>
-      <td><p>A <code>character</code>.</p></td>
+      <td><p>A <code>character</code>. The <code>*.panel</code> file from 1,000 Genome project.
+Default is <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>ref1kg_population</th>
-      <td><p>A <code>character</code>.</p></td>
+      <td><p>A <code>character</code>. The <code>*.tsv</code> file from 1,000 Genome project describing samples and ethnicity.
+Default is <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>ref1kg_genotypes</th>
-      <td><p>A <code>character</code>.</p></td>
+      <td><p>A <code>character</code>. The PLINK files from 1,000 Genome project.
+Default is <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>ref1kg_legend</th>
-      <td><p>A <code>character</code>.</p></td>
+      <td><p>A <code>character</code>. The <code>*.legend</code> file from 1,000 Genome project.
+Default is <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>ref1kg_fasta</th>
-      <td><p>A <code>character</code>.</p></td>
+      <td><p>A <code>character</code>. The <code>*.fasta</code> file from 1,000 Genome project.
+Default is <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>bin_path</th>
-      <td><p>A <code><a href='https://www.rdocumentation.org/packages/base/topics/list'>list(character)</a></code>.</p></td>
+      <td><p>A <code><a href='https://www.rdocumentation.org/packages/base/topics/list'>list(character)</a></code>. A list giving the binary path of <code>bcftools</code>, <code>bgzip</code>, <code>gcta</code> and <code>plink1.9</code>.</p></td>
     </tr>
     <tr>
       <th>title</th>
