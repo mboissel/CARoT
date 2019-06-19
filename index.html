@@ -85,7 +85,23 @@
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
-<p><em>CARoT</em> (Centralised and Automated Reporting Tools) is an under development set of Quality-Control reporting tools.</p>
+<p><em>CARoT</em> (Centralised and Automated Reporting Tools) is an under development set of Quality-Control reporting tools and some other functions.</p>
+<p>Currently <em>CARoT</em> includes the following functions:</p>
+<ul>
+<li>
+<code><a href="reference/estimate_ethnicity.html">estimate_ethnicity()</a></code> allows to compute the genomic component (and some figures) for ethnicity based on VCF files.</li>
+<li>
+<code><a href="reference/ggheatmap.html">ggheatmap()</a></code> allows to compute heatmap with dendrogram on x-axis and y-axis using <a href="https://ggplot2.tidyverse.org/">ggplot2</a>.</li>
+<li>
+<code><a href="reference/read_idats.html">read_idats()</a></code> allows to efficiently import idats files mostly using <a href="https://doi.org/doi:10.18129/B9.bioc.minfi">minfi</a> functions.</li>
+<li>
+<code><a href="reference/pca_report.html">pca_report()</a></code> allows to compute an analysis report using principal component analysis from <a href="https://github.com/gabraham/flashpca">flashpca</a> tool.<br>
+The function can be used in Rmarkdown chunk with <code>results="asis"</code> to render the report.</li>
+<li>
+<code><a href="reference/qc_idats.html">qc_idats()</a></code> allows to compute quality-control of methylation array from Illumina using a <a href="inst/rmarkdown/qc_idats.Rmd">rmarkdown template</a>.</li>
+<li>
+<code><a href="reference/qc_plink.html">qc_plink()</a></code> allows to compute quality-control of genotyping array (PLINK format) using a <a href="inst/rmarkdown/qc_plink.Rmd">rmarkdown template</a>.</li>
+</ul>
 </div>
 <div id="getting-help" class="section level2">
 <h2 class="hasAnchor">
