@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CARoT</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>qc_plink</span>(<span class='kw'>input_directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>output_directory</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cohort_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>output_file</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='no'>cohort_name</span>, <span class='st'>"_QC.html"</span>),
+  <span class='kw'>cohort_name</span> <span class='kw'>=</span> <span class='st'>"CARoT"</span>, <span class='kw'>output_file</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='no'>cohort_name</span>, <span class='st'>"_QC.html"</span>),
   <span class='kw'>array</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>callrate_samples</span> <span class='kw'>=</span> <span class='fl'>0.95</span>, <span class='kw'>callrate_snps</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
   <span class='kw'>heterozygosity_treshold</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>maf_threshold</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
   <span class='kw'>hwe_pvalue</span> <span class='kw'>=</span> <span class='fl'>1e-04</span>, <span class='kw'>includes_relatives</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -122,7 +122,7 @@
   <span class='st'>"/usr/bin/bgzip"</span>, <span class='kw'>plink</span> <span class='kw'>=</span> <span class='st'>"/usr/bin/plink1.9"</span>, <span class='kw'>gcta</span> <span class='kw'>=</span> <span class='st'>"/usr/bin/gcta64"</span>),
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='no'>array</span>, <span class='st'>"Array Quality-Control"</span>), <span class='kw'>author_name</span> <span class='kw'>=</span> <span class='st'>"CARoT"</span>,
   <span class='kw'>author_affiliation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>author_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>show_code</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>n_cores</span> <span class='kw'>=</span> <span class='fl'>22</span>, <span class='kw'>dpi</span> <span class='kw'>=</span> <span class='fl'>120</span>, <span class='kw'>gg_fontsize</span> <span class='kw'>=</span> <span class='fl'>12</span>,
+  <span class='kw'>show_code</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>n_cores</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>dpi</span> <span class='kw'>=</span> <span class='fl'>120</span>, <span class='kw'>gg_fontsize</span> <span class='kw'>=</span> <span class='fl'>12</span>,
   <span class='kw'>encoding</span> <span class='kw'>=</span> <span class='st'>"UTF-8"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -278,7 +278,7 @@ Default is <code>FALSE</code>.</p></td>
     <tr>
       <th>n_cores</th>
       <td><p>A <code>numeric</code>. The number of CPUs to use to estimate the ethnicity.
-Default is <code>20</code>.</p></td>
+Default is <code>1</code>.</p></td>
     </tr>
     <tr>
       <th>dpi</th>

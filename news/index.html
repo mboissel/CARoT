@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CARoT</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -98,9 +98,16 @@
       
     </div>
 
-    <div id="carot-0-2-2-development-version" class="section level1">
+    <div id="carot-0-3-0-development-version" class="section level1">
 <h1 class="page-header">
-<a href="#carot-0-2-2-development-version" class="anchor"></a>CARoT 0.2.2 (development version)</h1>
+<a href="#carot-0-3-0-development-version" class="anchor"></a>CARoT 0.3.0 (development version)</h1>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features</h2>
+<ul>
+<li>New <code><a href="../reference/qc_impute.html">qc_impute()</a></code>, it allows to compute post-imputation quality-control report using a default rmarkdown template (<code>inst/rmarkdown/qc_impute.Rmd</code>).</li>
+</ul>
+</div>
 <div id="minor-improvements-and-fixes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-improvements-and-fixes" class="anchor"></a>Minor improvements and fixes</h2>
@@ -108,6 +115,30 @@
 <li>In <code>inst/rmarkdown/qc_plink.Rmd</code>,
 <ul>
 <li>fix typos.</li>
+</ul>
+</li>
+<li>In <code>R/estimate_ethnicity.R</code>,
+<ul>
+<li>fix a wrong <code>if</code> statement when testing the parameters: <code>input_type = "array"</code> and <code>splitted_by_chr = FALSE</code>.</li>
+<li>fix chromosome pattern recognition to allow VCF files to start with the chromosome id.</li>
+<li>now check if binary exists at the path prodived in <code>bin_path</code> argument.</li>
+</ul>
+</li>
+<li>In <code>R/qc_plink.R</code>,
+<ul>
+<li>fix roxygen doc for parameter <code>n_cores</code> to make it consistent with the current default values.</li>
+<li>add <code>cohort_name</code> parameter.</li>
+</ul>
+</li>
+<li>In <code>R/qc_idats.R</code>,
+<ul>
+<li>change default parameter value for <code>cohort_name</code>.</li>
+<li>fix roxygen doc for parameter <code>n_cores</code> to make it consistent with the current default values.</li>
+</ul>
+</li>
+<li>In <code>inst/rmarkdown/qc_plink.Rmd</code>,
+<ul>
+<li>replace signle quote with double quotes.</li>
 </ul>
 </li>
 </ul>
@@ -173,9 +204,9 @@
     <div id="carot-0-2-0-development-version" class="section level1">
 <h1 class="page-header">
 <a href="#carot-0-2-0-development-version" class="anchor"></a>CARoT 0.2.0 (development version)</h1>
-<div id="new-features" class="section level2">
+<div id="new-features-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features" class="anchor"></a>New features</h2>
+<a href="#new-features-1" class="anchor"></a>New features</h2>
 <ul>
 <li>New <code><a href="../reference/qc_plink.html">qc_plink()</a></code>, it allows to compute quality-control of genotyping array (PLINK format) using a default rmarkdown template (<code>inst/rmarkdown/qc_plink.Rmd</code>).</li>
 </ul>
@@ -281,9 +312,9 @@
     <div id="carot-0-1-0-development-version" class="section level1">
 <h1 class="page-header">
 <a href="#carot-0-1-0-development-version" class="anchor"></a>CARoT 0.1.0 (development version)</h1>
-<div id="new-features-1" class="section level2">
+<div id="new-features-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features-1" class="anchor"></a>New features</h2>
+<a href="#new-features-2" class="anchor"></a>New features</h2>
 <ul>
 <li>New <code><a href="../reference/read_idats.html">read_idats()</a></code>, it allows to efficiently import idats files mostly using <code>minfi</code> functions.</li>
 <li>New <code><a href="../reference/estimate_ethnicity.html">estimate_ethnicity()</a></code>, it allows to compute the genomic component for ethnicity based on VCF files.</li>
@@ -300,7 +331,7 @@ The function can be used in Rmarkdown chunk with <code>results="asis"</code> to 
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#carot-0-2-2-development-version">0.2.2</a></li>
+        <li><a href="#carot-0-3-0-development-version">0.3.0</a></li>
         <li><a href="#carot-0-2-1-development-version">0.2.1</a></li>
         <li><a href="#carot-0-2-0-development-version">0.2.0</a></li>
         <li><a href="#carot-0-1-7-development-version">0.1.7</a></li>

@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CARoT</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -109,7 +109,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>qc_idats</span>(<span class='no'>csv_file</span>, <span class='no'>data_directory</span>, <span class='kw'>array</span> <span class='kw'>=</span> <span class='st'>"EPIC"</span>,
-  <span class='kw'>annotation</span> <span class='kw'>=</span> <span class='st'>"ilm10b4.hg19"</span>, <span class='kw'>output_file</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='no'>array</span>, <span class='st'>"_QC.html"</span>),
+  <span class='kw'>annotation</span> <span class='kw'>=</span> <span class='st'>"ilm10b4.hg19"</span>, <span class='kw'>cohort_name</span> <span class='kw'>=</span> <span class='st'>"CARoT"</span>,
+  <span class='kw'>output_file</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='no'>cohort_name</span>, <span class='no'>array</span>, <span class='st'>"QC.html"</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>),
   <span class='kw'>output_directory</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>filter_snps</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>filter_non_cpg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>filter_xy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>filter_multihit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>filter_beads</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>population</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bead_cutoff</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>detection_pvalues</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
@@ -120,7 +121,7 @@
   <span class='kw'>pca_vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Sample_Plate"</span>, <span class='st'>"Sentrix_ID"</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='no'>array</span>,
   <span class='st'>"Array Quality-Control"</span>), <span class='kw'>author_name</span> <span class='kw'>=</span> <span class='st'>"CARoT"</span>,
   <span class='kw'>author_affiliation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>author_email</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>show_code</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>n_cores</span> <span class='kw'>=</span> <span class='fl'>22</span>, <span class='kw'>dpi</span> <span class='kw'>=</span> <span class='fl'>120</span>, <span class='kw'>gg_fontsize</span> <span class='kw'>=</span> <span class='fl'>12</span>,
+  <span class='kw'>show_code</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>n_cores</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>dpi</span> <span class='kw'>=</span> <span class='fl'>120</span>, <span class='kw'>gg_fontsize</span> <span class='kw'>=</span> <span class='fl'>12</span>,
   <span class='kw'>encoding</span> <span class='kw'>=</span> <span class='st'>"UTF-8"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -141,6 +142,10 @@
     <tr>
       <th>annotation</th>
       <td><p>A <code>character</code>. The name and version of the annotation package to be used.</p></td>
+    </tr>
+    <tr>
+      <th>cohort_name</th>
+      <td><p>A <code>character</code>. The name of the studied cohort / population.</p></td>
     </tr>
     <tr>
       <th>output_file</th>
@@ -280,7 +285,7 @@ Default is <code>FALSE</code>.</p></td>
     <tr>
       <th>n_cores</th>
       <td><p>A <code>numeric</code>. The number of CPUs to use to estimate the ethnicity.
-Default is <code>20</code>.</p></td>
+Default is <code>1</code>.</p></td>
     </tr>
     <tr>
       <th>dpi</th>
