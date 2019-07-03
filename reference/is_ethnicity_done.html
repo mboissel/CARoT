@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ggheatmap — ggheatmap • CARoT</title>
+<title>is_ethnicity_done — is_ethnicity_done • CARoT</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="ggheatmap — ggheatmap" />
+<meta property="og:title" content="is_ethnicity_done — is_ethnicity_done" />
 
-<meta property="og:description" content="ggheatmap" />
+<meta property="og:description" content="is_ethnicity_done" />
 <meta name="twitter:card" content="summary" />
 
 <meta name="robots" content="noindex">
@@ -102,78 +102,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>ggheatmap</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mcanouil/CARoT/blob/master/R/ggheatmap.R'><code>R/ggheatmap.R</code></a></small>
-    <div class="hidden name"><code>ggheatmap.Rd</code></div>
+    <h1>is_ethnicity_done</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mcanouil/CARoT/blob/master/R/estimate_ethnicity.R'><code>R/estimate_ethnicity.R</code></a></small>
+    <div class="hidden name"><code>is_ethnicity_done.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>ggheatmap</p>
+    <p>is_ethnicity_done</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ggheatmap</span>(<span class='no'>data</span>, <span class='kw'>dendrogram_columns</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>dendrogram_rows</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>line_size</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>font_size</span> <span class='kw'>=</span> <span class='fl'>11</span>, <span class='kw'>font_size_x</span> <span class='kw'>=</span> <span class='fl'>11</span>,
-  <span class='kw'>font_size_y</span> <span class='kw'>=</span> <span class='fl'>11</span>, <span class='kw'>distance_method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>,
-  <span class='kw'>cluster_method</span> <span class='kw'>=</span> <span class='st'>"ward.D2"</span>, <span class='kw'>scale_name</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-  <span class='kw'>scale_revert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>is_ethnicity_done</span>(<span class='no'>output_directory</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>A <code>data.frame</code>. The data on which to draw the heatmap/dendrogram.</p></td>
-    </tr>
-    <tr>
-      <th>dendrogram_columns</th>
-      <td><p>A <code>logical</code>. Should the dendrogram for columns be plotted?</p></td>
-    </tr>
-    <tr>
-      <th>dendrogram_rows</th>
-      <td><p>A <code>logical</code>. Should the dendrogram for row be plotted?</p></td>
-    </tr>
-    <tr>
-      <th>line_size</th>
-      <td><p>A <code>numeric</code>. Value for the line size.</p></td>
-    </tr>
-    <tr>
-      <th>font_size</th>
-      <td><p>A <code>numeric</code>. Value for the font size.</p></td>
-    </tr>
-    <tr>
-      <th>font_size_x</th>
-      <td><p>A <code>numeric</code>. Value for the font size of the x-axis.</p></td>
-    </tr>
-    <tr>
-      <th>font_size_y</th>
-      <td><p>A <code>numeric</code>. Value for the font size of the y-axis.</p></td>
-    </tr>
-    <tr>
-      <th>distance_method</th>
-      <td><p>A <code>character</code>. The distance method to be used.
-This must be one of <code>"euclidean"</code>, <code>"maximum"</code>, <code>"manhattan"</code>, <code>"canberra"</code>, <code>"binary"</code> or <code>"minkowski"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>cluster_method</th>
-      <td><p>A <code>character</code>. The agglomeration method to be used.
-This should be one of <code>"ward.D"</code>, <code>"ward.D2"</code>, <code>"single"</code>, <code>"complete"</code>,
-<code>"average"</code> (= UPGMA), <code>"mcquitty"</code> (= WPGMA), <code>"median"</code> (= WPGMC) or <code>"centroid"</code> (= UPGMC).</p></td>
-    </tr>
-    <tr>
-      <th>scale_name</th>
-      <td><p>A <code>character</code>. The name of the legend.</p></td>
-    </tr>
-    <tr>
-      <th>scale_revert</th>
-      <td><p>A <code>logical</code>. Should the scale values be reversed?</p></td>
+      <th>output_directory</th>
+      <td><p>A <code>character</code>. The path where the data and figures is written.</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A <code>ggplot</code> object.</p>
     
 
   </div>
@@ -181,9 +130,7 @@ This should be one of <code>"ward.D"</code>, <code>"ward.D2"</code>, <code>"sing
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>
