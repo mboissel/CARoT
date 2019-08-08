@@ -114,7 +114,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>format_array_chr</span>(<span class='no'>cohort_name</span>, <span class='no'>input_vcfs</span>, <span class='no'>output_directory</span>, <span class='no'>ref1kg_vcfs</span>,
-  <span class='no'>ref1kg_maf</span>, <span class='no'>quality_tag</span>, <span class='no'>quality_threshold</span>, <span class='no'>n_cores</span>, <span class='no'>bin_path</span>)</pre>
+  <span class='no'>ref1kg_maf</span>, <span class='no'>quality_tag</span>, <span class='no'>quality_threshold</span>, <span class='no'>recode</span>, <span class='no'>n_cores</span>, <span class='no'>bin_path</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,11 +141,16 @@
     </tr>
     <tr>
       <th>quality_tag</th>
-      <td><p>A <code>character</code>. Name of the imputation quality tag for <code>"array"</code>.</p></td>
+      <td><p>A <code>character</code>. Name of the imputation quality tag for <code>"array"</code>,
+<em>e.g.</em>, <code>"INFO"</code> or <code>"R2"</code>. Default is <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>quality_threshold</th>
       <td><p>A <code>numeric</code>. The threshold to keep/discard SNPs based on their imputation quality.</p></td>
+    </tr>
+    <tr>
+      <th>recode</th>
+      <td><p>A <code>character</code>. Which VCF should be filtered and recode, either <code>"all"</code> or <code>"input"</code>.</p></td>
     </tr>
     <tr>
       <th>n_cores</th>

@@ -114,7 +114,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>format_sequencing</span>(<span class='no'>cohort_name</span>, <span class='no'>input_vcfs</span>, <span class='no'>output_directory</span>, <span class='no'>ref1kg_vcfs</span>,
-  <span class='no'>ref1kg_maf</span>, <span class='no'>bin_path</span>)</pre>
+  <span class='no'>ref1kg_maf</span>, <span class='no'>recode</span>, <span class='no'>bin_path</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,6 +138,10 @@
     <tr>
       <th>ref1kg_maf</th>
       <td><p>A <code>numeric</code>. MAF threshold for SNPs in 1,000 Genomes</p></td>
+    </tr>
+    <tr>
+      <th>recode</th>
+      <td><p>A <code>character</code>. Which VCF should be filtered and recode, either <code>"all"</code> or <code>"input"</code>.</p></td>
     </tr>
     <tr>
       <th>bin_path</th>
