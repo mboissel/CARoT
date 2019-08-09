@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Changelog" />
 
-<meta name="robots" content="noindex">
+
 
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CARoT</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.3.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -130,6 +130,7 @@
 <li>fix chromosome pattern recognition to allow VCF files to start with the chromosome id.</li>
 <li>now check if binary exists at the path prodived in <code>bin_path</code> argument.</li>
 <li>fix when IDs contains "_".</li>
+<li>fix when chromosome id in VCF includes “chr”.</li>
 <li>add <code>check_*</code> functions.</li>
 <li>export <code><a href="../reference/compute_pca.html">compute_pca()</a></code>.</li>
 </ul>
