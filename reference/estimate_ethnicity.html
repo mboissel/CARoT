@@ -116,10 +116,10 @@
     <pre class="usage"><span class='fu'>estimate_ethnicity</span>(<span class='no'>cohort_name</span>, <span class='no'>input_vcfs</span>, <span class='no'>input_type</span>, <span class='no'>output_directory</span>,
   <span class='no'>ref1kg_vcfs</span>, <span class='no'>ref1kg_population</span>, <span class='kw'>ref1kg_maf</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
   <span class='kw'>splitted_by_chr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>quality_tag</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>quality_threshold</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>recode</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>n_cores</span> <span class='kw'>=</span> <span class='fl'>6</span>,
-  <span class='kw'>bin_path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>vcftools</span> <span class='kw'>=</span> <span class='st'>"/usr/bin/vcftools"</span>, <span class='kw'>bcftools</span> <span class='kw'>=</span>
-  <span class='st'>"/usr/bin/bcftools"</span>, <span class='kw'>bgzip</span> <span class='kw'>=</span> <span class='st'>"/usr/bin/bgzip"</span>, <span class='kw'>tabix</span> <span class='kw'>=</span> <span class='st'>"/usr/bin/tabix"</span>,
-  <span class='kw'>plink1.9</span> <span class='kw'>=</span> <span class='st'>"/usr/bin/plink1.9"</span>))</pre>
+  <span class='kw'>quality_threshold</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>recode</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>vcf_half_call</span> <span class='kw'>=</span> <span class='st'>"missing"</span>,
+  <span class='kw'>n_cores</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>bin_path</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>vcftools</span> <span class='kw'>=</span> <span class='st'>"/usr/bin/vcftools"</span>, <span class='kw'>bcftools</span>
+  <span class='kw'>=</span> <span class='st'>"/usr/bin/bcftools"</span>, <span class='kw'>bgzip</span> <span class='kw'>=</span> <span class='st'>"/usr/bin/bgzip"</span>, <span class='kw'>tabix</span> <span class='kw'>=</span>
+  <span class='st'>"/usr/bin/tabix"</span>, <span class='kw'>plink1.9</span> <span class='kw'>=</span> <span class='st'>"/usr/bin/plink1.9"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,6 +168,13 @@
     <tr>
       <th>recode</th>
       <td><p>A <code>character</code>. Which VCF should be filtered and recode, either <code>"all"</code> or <code>"input"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>vcf_half_call</th>
+      <td><p>A <code>character</code>. The mode to handle half-call.
++ 'haploid'/'h': Treat half-calls as haploid/homozygous (the PLINK 1 file format does not distinguish between the two). This maximizes similarity between the VCF and BCF2 parsers.
++ 'missing'/'m': Treat half-calls as missing (default).
++ 'reference'/'r': Treat the missing part as reference.</p></td>
     </tr>
     <tr>
       <th>n_cores</th>
