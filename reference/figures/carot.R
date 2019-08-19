@@ -1,80 +1,115 @@
-# devtools::install_github("GuangchuangYu/hexSticker")
-# install.packages("rsvg")
-# install.packages("pdftools")
-
-
 library(ggplot2)
 library(hexSticker)
+library(magick)
+library(showtext)
 
+font_add_google("Lemon", "cf")
+showtext_auto()
 
-sticker <- function(subplot, s_x = 0.8, s_y = 0.75, s_width = 0.4, s_height = 0.5,
-                    package, p_x = 1, p_y = 1.4, p_color = "#FFFFFF", p_family = "Aller_Rg",
-                    p_size = 8, h_size = 1.2, h_fill = "#1881C2", h_color = "#87B13F",
-                    spotlight = FALSE, l_x = 1, l_y = 0.5, l_width = 3, l_height = 3,
-                    l_alpha = 0.4, url = "", u_x = 1, u_y = 0.08, u_color = "black",
-                    u_family = "Aller_Rg", u_size = 1.5, white_around_sticker = FALSE,
-                    ..., filename = paste0(package, ".png"), asp = 1, dpi = 300) {
-  sticker <- ggplot() +
-    geom_hexagon(size = h_size, fill = h_fill, color = NA)
+# paste0("https://svgsilh.com/svg/144965-FFB85D.svg") %>%
+#   image_read_svg() %>%
+#   image_background(color = "transparent") %>%
+#   image_rotate(degrees = -24) %>%
+#   sticker(
+#     subplot = .,
+#     s_x = 1.21,
+#     s_y = 0.88,
+#     s_width = 1.580,
+#     s_height = 1.806,
+#     package = "CARoT",
+#     p_color = "#FFB85D",
+#     p_size = 7 * 2.5,
+#     p_x = 0.6,
+#     p_y = 1.3,
+#     p_family = "cf",
+#     spotlight = FALSE,
+#     h_fill = "#F87217",
+#     h_color = "#FFB85D",
+#     dpi = 120 * 2.5,
+#     filename = "./man/figures/carot_hex.png"
+#   )
 
-  sticker <- sticker +
-    geom_hexagon(size = h_size, fill = NA, color = h_color)
+## move SVG position and different colours set
+for (icolour in 1:4) {
+  carot_colour <- c("FFB85D", "F87217", "00ee76", "008b45")[icolour]
+  paste0("https://svgsilh.com/svg/144965-", carot_colour, ".svg") %>%
+    image_read_svg() %>%
+    image_background(color = "transparent") %>%
+    image_rotate(degrees = -85) %>%
+    sticker(
+      subplot = .,
+      s_x = 1.21,
+      s_y = 1.135,
+      s_width = 1.580 * 1.2,
+      s_height = 1.806 * 1.2,
+      package = "CARoT",
+      p_color = paste0("#", carot_colour),
+      p_size = 8 * 2.5,
+      p_x = 0.75,
+      p_y = 0.60,
+      p_family = "cf",
+      spotlight = FALSE,
+      h_fill = c("#F87217", "#FFB85D", "#008b45", "#00ee76")[icolour],
+      h_color = c("#FFB85D", "#F87217", "#00ee76", "#008b45")[icolour],
+      dpi = 120 * 2.5,
+      filename = paste0("./man/figures/carot_hex", icolour, "a.png")
+    )
+  # image_read(paste0("./man/figures/carot_hex", icolour, "a.png"))
+}
 
-  if (spotlight) {
-    sticker <- sticker +
-      ggimage::geom_subview(
-        subview = hexSticker:::spotlight(l_alpha), x = l_x, y = l_y, width = l_width, height = l_height
-      )
-  }
-
-  if (inherits(subplot, "character")) {
-    d <- data.frame(x = s_x, y = s_y, image = subplot)
-    sticker <- sticker +
-      ggimage::geom_image(
-        aes_(x = ~x, y = ~y, image = ~image), d, size = s_width, asp = asp
-      )
-  } else {
-    sticker <- sticker +
-      ggimage::geom_subview(
-        subview = subplot, x = s_x, y = s_y, width = s_width, height = s_height
-      )
-  }
-
-  sticker <- sticker +
-    geom_pkgname(package, p_x, p_y, p_color, p_family, p_size, ...)
-
-  sticker <- sticker +
-    geom_url(url, x = u_x, y = u_y, color = u_color, family = u_family, size = u_size)
-
-  if (white_around_sticker) {
-    sticker <- sticker +
-      white_around_hex(size = h_size)
-  }
-
-  sticker <- sticker +
-    theme_sticker(size = h_size)
-  save_sticker(filename, sticker, dpi = dpi)
-  invisible(sticker)
+## Old SVg picture and different colours set
+for (icolour in 1:4) {
+  carot_colour <- c("FFB85D", "F87217", "00ee76", "008b45")[icolour]
+  paste0("https://svgsilh.com/svg/432492-", carot_colour, ".svg") %>%
+    image_read_svg() %>%
+    image_background(color = "transparent") %>%
+    image_rotate(degrees = 35) %>%
+    sticker(
+      subplot = .,
+      s_x = 1,
+      s_y = 1.05,
+      s_width = 1.772,
+      s_height = 1.576,
+      package = "CARoT",
+      p_color = paste0("#", carot_colour),
+      p_size = 10 * 2.5,
+      p_y = 0.55,
+      p_family = "cf",
+      spotlight = FALSE,
+        h_fill = c("#F87217", "#FFB85D", "#008b45", "#00ee76")[icolour],
+        h_color = c("#FFB85D", "#F87217", "#00ee76", "#008b45")[icolour],
+      dpi = 120 * 2.5,
+      filename = paste0("./man/figures/carot_hex", icolour, "b.png")
+    )
+  # image_read(paste0("./man/figures/carot_hex", icolour, "b.png"))
 }
 
 
-sticker(
-  subplot = "./man/figures/carot.tiff",
-  s_x = 1,
-  s_y = 1.19,
-  s_width = 0.65,
-  package = "CARoT",
-  p_color = "white",
-  p_size = 24,
-  p_y = 0.46,
-  spotlight = TRUE,
-  l_alpha = 0.75,
-  l_x = 1,
-  l_y = 1,
-  l_width = 5,
-  l_height = 5,
-  h_fill = "springgreen3",
-  h_color = "springgreen4",
-  dpi = 300,
-  filename = "./man/figures/carot_hex.png"
-)
+for (icolour in 1:4) {
+  carot_colour <- c("FFB85D", "F87217", "00ee76", "008b45")[icolour]
+  paste0("https://svgsilh.com/svg/1299147-", carot_colour, ".svg") %>%
+    image_read_svg() %>%
+    image_background(color = "transparent") %>%
+    image_rotate(degrees = 0) %>%
+    sticker(
+      subplot = .,
+      s_x = 0.97,
+      s_y = 0.93,
+      s_width = 1.235 * 1.1,
+      s_height = 1.600 * 1.1,
+      package = "CARoT",
+      p_color = paste0("#", carot_colour),
+      p_size = 6 * 2.5,
+      p_x = 1.47,
+      p_y = 0.8,
+      p_family = "cf",
+      spotlight = FALSE,
+        h_fill = c("#F87217", "#FFB85D", "#008b45", "#00ee76")[icolour],
+        h_color = c("#FFB85D", "#F87217", "#00ee76", "#008b45")[icolour],
+      dpi = 120 * 2.5,
+      filename = paste0("./man/figures/carot_hex", icolour, "c.png")
+    )
+  # image_read(paste0("./man/figures/carot_hex", icolour, "c.png"))
+}
+
+file.copy(paste0("./man/figures/carot_hex2b.png"), paste0("./man/figures/carot_hex.png"), overwrite = TRUE)
