@@ -138,7 +138,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>csv_file</th>
-      <td><p>A <code>character</code>. The path to a CSV file, i.e., a sample sheet describing the data.</p></td>
+      <td><p>A <code>character</code>. The path to a CSV file, <em>i.e.</em>, a sample sheet describing the data.</p></td>
     </tr>
     <tr>
       <th>data_directory</th>
@@ -146,7 +146,7 @@
     </tr>
     <tr>
       <th>array</th>
-      <td><p>A <code>character</code>. The array name, i.e., <code>"EPIC"</code> or <code>"450k"</code>.</p></td>
+      <td><p>A <code>character</code>. The array name, <em>i.e.</em>, <code>"EPIC"</code> or <code>"450k"</code>.</p></td>
     </tr>
     <tr>
       <th>annotation</th>
@@ -235,26 +235,26 @@ Default is <code>NULL</code>.</p></td>
     <tr>
       <th>norm_background</th>
       <td><p>A <code>character</code>. Optional method to estimate background normal distribution parameters.
-This must be one of "oob", "est" or "neg".
+This must be one of <code>"oob"</code>, <code>"est"</code> or <code>"neg"</code>.
 Default is <code>"oob"</code>.</p></td>
     </tr>
     <tr>
       <th>norm_dye</th>
       <td><p>A <code>character</code>. Dye bias correction, "mean": correction based on averaged red/green ratio;
-or "RELIC": correction with RELIC method;
-or "none": no dye bias correction.
+or <code>"RELIC"</code>: correction with RELIC method;
+or <code>"none"</code>: no dye bias correction.
 Default is <code>"RELIC"</code>.</p></td>
     </tr>
     <tr>
       <th>norm_quantile</th>
       <td><p>A <code>character</code>. The quantile normalisation to be used.
-This should be one of "quantile1", "quantile2", or "quantile3".
-Default is <code>quantile1</code>.</p></td>
+This should be one of <code>"quantile1"</code>, <code>"quantile2"</code>, or <code>"quantile3"</code>.
+Default is <code>"quantile1"</code>.</p></td>
     </tr>
     <tr>
       <th>cell_tissue</th>
       <td><p>A <code>character</code>. The cell tissue to be used for cell composition estimation,
-using a reference panel (i.e., blood or chord blood) or a mathematical deconvolution.
+using a reference panel (<em>i.e.</em>, <code>"blood"</code> or <code>"cordblood"</code>) or a mathematical deconvolution.
 Default is <code>NULL</code>.</p></td>
     </tr>
     <tr>
