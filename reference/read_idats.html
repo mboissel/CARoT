@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>read_idats — read_idats • CARoT</title>
+<title>Efficiently import idats files mostly using minfi functions. — read_idats • CARoT</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="read_idats — read_idats" />
-<meta property="og:description" content="read_idats" />
+<meta property="og:title" content="Efficiently import idats files mostly using minfi functions. — read_idats" />
+<meta property="og:description" content="Efficiently import idats files mostly using minfi functions." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,13 +108,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>read_idats</h1>
+    <h1>Efficiently import idats files mostly using minfi functions.</h1>
     <small class="dont-index">Source: <a href='https://github.com/mcanouil/CARoT/blob/master/R/read_idats.R'><code>R/read_idats.R</code></a></small>
     <div class="hidden name"><code>read_idats.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>read_idats</p>
+    <p>Efficiently import idats files mostly using minfi functions.</p>
     </div>
 
     <pre class="usage"><span class='fu'>read_idats</span>(<span class='kw'>directory</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(), <span class='kw'>csv_file</span> <span class='kw'>=</span> <span class='st'>"csv$"</span>,
@@ -131,8 +131,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>directory</th>
-      <td><p>A <code>character</code>. Location of IDAT files,
-default is the current working directory.</p></td>
+      <td><p>A <code>character</code>. Location of IDAT files, default is the current working directory.</p></td>
     </tr>
     <tr>
       <th>csv_file</th>
@@ -146,63 +145,78 @@ or beta-values (<code>"B"</code>). Default is <code>"B"</code>.</p></td>
     </tr>
     <tr>
       <th>filter_beads</th>
-      <td><p>A <code>logical</code>. Should probes with a beadcount less than 3 will be removed
-depending on the <code>bead_cutoff</code> value. Default is <code>TRUE</code>.</p></td>
+      <td><p>A <code>logical</code>. Should the probes with a beadcount less than 3 be removed?
+Default is <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>bead_cutoff</th>
-      <td><p>A <code>numeric</code>. The beadCutoff represents the fraction of samples that must
-have a beadcount less than 3 before the probe is removed.(default = 0.05)</p></td>
+      <td><p>A <code>numeric</code>. The threshold for beadcount.
+Default is <code>0.05</code>.</p></td>
     </tr>
     <tr>
       <th>filter_non_cpg</th>
-      <td><p>A <code>logical</code>. Should non-cg probes be removed? Default is <code>TRUE</code>.</p></td>
+      <td><p>A <code>logical</code>. Should the non-cg probes be removed?</p></td>
     </tr>
     <tr>
       <th>filter_snps</th>
-      <td><p>A <code>logical</code>. Should probes in which the probed CpG falls near a
-SNP be removed? Default is <code>TRUE</code>.</p></td>
+      <td><p>A <code>logical</code>. Should the probes in which the probed CpG falls near a SNP
+(according to (<a href='https://www.doi.org/10.1093/nar/gkw967'>Zhou et al., 2016</a>)) be removed?
+Default is <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>population</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/vector.html'>vector(character)</a></code>.</p></td>
+      <td><p>A <code>character</code>. Name of the ethnicity population to be used.
+Default is <code>NULL</code> for none.</p></td>
     </tr>
     <tr>
       <th>filter_multihit</th>
-      <td><p>A <code>logical</code>. Should probes in which the probe aligns to multiple
-locations with bwa be removed? Default is <code>TRUE</code>.</p></td>
+      <td><p>A <code>logical</code>. Should the probes which align to multiple locations
+(according to <a href='https://www.doi.org/10.1186/gb-2013-14-9-r105'>Nordlund et al., 2013</a>) be removed?
+Default is <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>filter_xy</th>
-      <td><p>A <code>logical</code>. Should probes from X and Y chromosomes be removed? Default is <code>TRUE</code>.</p></td>
+      <td><p>A <code>logical</code>. Should the probes from X and Y chromosomes be removed?
+Default is <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>detection_pvalues</th>
-      <td><p>A <code>numeric</code>.</p></td>
+      <td><p>A <code>numeric</code>. The threshold for the detection pvalues above which,
+values are considered as missing. Default is <code>0.01</code>.</p></td>
     </tr>
     <tr>
       <th>filter_callrate</th>
-      <td><p>A <code>logical</code>.,</p></td>
+      <td><p>A <code>logical</code>. Should the data be filtered based on call rate metric?
+Default is <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>callrate_samples</th>
-      <td><p>A <code>numeric</code>.</p></td>
+      <td><p>A <code>numeric</code>. The call rate threshold for samples, under which samples are excluded.
+Default is <code>0.99</code>.</p></td>
     </tr>
     <tr>
       <th>callrate_probes</th>
-      <td><p>A <code>numeric</code>.</p></td>
+      <td><p>A <code>numeric</code>. The call rate threshold for probes, under which probes are excluded.
+Default is <code>1</code>.</p></td>
     </tr>
     <tr>
       <th>norm_background</th>
-      <td><p>A <code>character</code>.</p></td>
+      <td><p>A <code>character</code>. Optional method to estimate background normal distribution parameters.
+This must be one of <code>"oob"</code>, <code>"est"</code> or <code>"neg"</code>.
+Default is <code>"oob"</code>.</p></td>
     </tr>
     <tr>
       <th>norm_dye</th>
-      <td><p>A <code>character</code>.</p></td>
+      <td><p>A <code>character</code>. Dye bias correction, "mean": correction based on averaged red/green ratio;
+or <code>"RELIC"</code>: correction with RELIC method;
+or <code>"none"</code>: no dye bias correction.
+Default is <code>"RELIC"</code>.</p></td>
     </tr>
     <tr>
       <th>norm_quantile</th>
-      <td><p>A <code>character</code>.</p></td>
+      <td><p>A <code>character</code>. The quantile normalisation to be used.
+This should be one of <code>"quantile1"</code>, <code>"quantile2"</code>, or <code>"quantile3"</code>.
+Default is <code>"quantile1"</code>.</p></td>
     </tr>
     <tr>
       <th>array_name</th>
